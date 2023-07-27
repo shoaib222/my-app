@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import SenderComponent from './SenderfComponent';
+import ReceiverComponent from './ReceiverComponent';
 
-function App() {
+const App = () => {
+  const [updatedValue, setUpdatedValue] = useState('');
+
+  const handleValueUpdate = (value) => {
+    setUpdatedValue(value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-6">
+          <SenderComponent onUpdate={handleValueUpdate} />
+        </div>
+        <div className="col-md-6">
+          <ReceiverComponent value={updatedValue} />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
